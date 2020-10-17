@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+    <body>
+        <div class="container">
+            <div>
+            {% include "navbar.html" %}
+            </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="form-group" id="registerUserForm" method="post" enctype="multipart/form-data" action="registerUser/">        
+                       <form action="" method="post">
+                            {% csrf_token %}
+                            <table>
+                            {{ form.as_table }}
+                            </table>
+                             <button class="btn btn-block bg-theme" type="submit" value="Add"> 
+                                Add
+                            </button>
+                       </form>
+                    </div>
+                </div>                
+            </div>
+        </div>
+{% include "footer.html" %}
+    </body>
+</html>

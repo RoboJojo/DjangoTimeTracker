@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+    <body>
+        <div class="container">
+            <div>
+            {% include "navbar.html" %}
+            </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="card-header">
+                        All Users
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <caption class="pr-4"> {{allUsers.count}} User Registered</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col"> User Name </th>
+                                <th scope="col"> Time Spent </th>
+                                <th scope="col"> Projects </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in allUsers %}
+                            <tr>
+                                <th scope="row"> {{user.ID}} </th>
+                                <td> {{user.name}} </td>
+                                <td> {{user.timeSpent}} </td>
+                                <td> {% for project in user.projects.values %}
+                                        {{project.name}}
+                                     {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>                             
+            </div>
+        </div>
+{% include "footer.html" %}
+    </body>
+</html>

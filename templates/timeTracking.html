@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+    <body>
+        <div class="container">
+            <div>
+                {% include "navbar.html" %}
+            </div>
+                {% include "modal.html" %}
+            <div class="card mt-2">
+                <div class="card-header">
+                    All Projects
+                </div>
+                <div class="card-body">
+                    {% for project in allProjects %}
+                        <form id="{{project.name}}_{{project.ID}}" class="border border-top-0 border-bg-theme p-4" action="" onsubmit="return trackTime(this.id)">
+                         {% csrf_token %}
+                                <div class="row">
+                                    <div class="col">
+                                        <input id="project_{{project.ID}}" name="projectID" class="input-group-text form-control" type="text" value="{{project.ID}}" readonly>
+                                    </div>
+                                    <div class="col">
+                                        <input id="project_{{project.name}}" name="projectName" class="input-group-text form-control" type="text" value="{{project.name}}" readonly>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-block bg-theme"  data-toggle="modal" data-target="#timeTrackingModal">
+                                            Start Timer
+                                        </button>
+                                    </div>
+                                </div>
+                        </form>
+                    {% endfor %}
+                </div>
+            </div>                             
+        </div>
+{% include "footer.html" %}
+ {% load static %}
+<script src="{% static 'js/timeTracking.js' %}" ></script>
+    </body>
+</html>

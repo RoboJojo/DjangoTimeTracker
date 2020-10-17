@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+    <body>
+        <div class="container">
+            <div>
+            {% include "navbar.html" %}
+            </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="card-header">
+                        All Projects
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <caption class="pr-4"> {{allProjects.count}} Project Registered</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col"> Project Name </th>
+                                <th scope="col"> Time Spent </th>
+                                <th scope="col"> Start Date </th>
+                                <th scope="col"> People </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for project in allProjects %}
+                            <tr>
+                                <th scope="row"> {{project.ID}} </th>
+                                <td> {{project.name}} </td>
+                                
+                                <td> {{project.timeSpent }} </td>
+                                <td> {{project.start_date}} </td>
+                                <td> {% for person in project.people.values %}
+                                        {{person.name}} <br>
+                                        {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>                             
+            </div>
+        </div>
+{% include "footer.html" %}
+    </body>
+</html>
