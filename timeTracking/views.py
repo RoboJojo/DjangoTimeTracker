@@ -4,26 +4,25 @@ from django.contrib import messages
 from timeTracking.models import User, Project, timeSpent
 import timeTracker.forms as forms
 from django.utils import timezone
-# Create your views here.
+
 def timeTracking(request):
     
     allProjects = Project.objects.all()
-    
+
     context = {
         'allProjects': allProjects,
-       # 'startTime' : forms.startTime()
-               }
-    
-    return render(request,'timeTracking.html', context)
+    }
+
+    return render(request, 'timeTracking.html', context)
 
 def startTime(request):
    if request.method == "POST":
-       project = Project.objects.get(ID=request.POST['projectID'])
+       project = Project.objects.get(ID = request.POST['projectID'])
        now = timezone.now()
-       startTimeSpent = timeSpent(project=project,startTime=now)
+       startTimeSpent = timeSpent(project = project, startTime = now)
        startTimeSpent.save()
-       return JsonResponse({"success":True})
-   return JsonResponse({"success":False})
+       return JsonResponse({ "success" : True })
+   return JsonResponse({ "success" : False })
 
 def stopTime(request):
     if request.method == "POST":
@@ -31,24 +30,21 @@ def stopTime(request):
         #need to have a check if there are more than one entries without an end time. should only be one
         #also need some way to make sure the POST request isn't coming from anywhere except the timeTracking page
             endTimeSpent = timeSpent.objects.order_by("startTime").last()
-            #project = timeSpentObject.project for later devlopment for updating Projects table
             now = timezone.now()            
             endTimeSpent.endTime = now
             endTimeSpent.duration = endTimeSpent.endTime - endTimeSpent.startTime
-            
             project = endTimeSpent.project
             project.timeSpent += endTimeSpent.duration
-            
             endTimeSpent.save()
             project.save()
-            return JsonResponse({"success":True})
-    return JsonResponse({"success":False})
+            return JsonResponse({ "success":True })
+    return JsonResponse({ "success":False })
             
 def clearDurations(request):
           timeSpent.objects.all().delete()
           Project.objects.all().delete()
           User.objects.all().delete()
-          return JsonResponse({"success":True})
+          return JsonResponse({ "success":True })
         
 def registerProject(request):
     
@@ -62,12 +58,12 @@ def registerProject(request):
             messages.success(request, 'New Project successfuly created')
     form = forms.newProject()
         
-    return render(request,"addProject.html",{'form': form}) 
+    return render(request, "addProject.html", { 'form' : form }) 
        
 def projects(request):
     allProjects = Project.objects.all()
         
-    context = {'allProjects': allProjects}
+    context = { 'allProjects' : allProjects}
     
     return render(request , 'projects.html' , context)
 
@@ -82,18 +78,18 @@ def registerUser(request):
     else:
          form = forms.newUser()
     
-    return render(request,"addUser.html",{'form': form}) 
+    return render(request, "addUser.html", { 'form' : form }) 
 
 def users(request):
     allUsers = User.objects.all()
         
-    context = {'allUsers': allUsers}
+    context = {'allUsers' : allUsers}
     
     return render(request , 'users.html' , context)
 
 def durations(request):
     allDurations = timeSpent.objects.all()
-        
-    context = {'allDurations': allDurations}
-    
+
+    context = {'allDurations' : allDurations}
+
     return render(request , 'timeDurations.html' , context)
