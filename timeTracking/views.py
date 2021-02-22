@@ -62,8 +62,11 @@ def registerProject(request):
        
 def projects(request):
     allProjects = Project.objects.all()
-        
-    context = { 'allProjects' : allProjects}
+    chartData = {'labels': [], 'data': []}
+    for project in allProjects:
+        chartData['labels'].append(project.name)
+        chartData['data'].append(project.timeSpent.seconds)
+    context = { 'allProjects' : allProjects, 'chartData' : chartData}
     
     return render(request , 'projects.html' , context)
 
