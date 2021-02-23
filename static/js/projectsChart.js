@@ -1,5 +1,9 @@
+window.ProjectChart = null;
 window.onload = createChart();
 function createChart(chartType = "pie") {
+    if(window.ProjectChart !== null){
+        window.ProjectChart.destroy();
+    }
     let ctx = document.querySelector('#chart');
     let data = JSON.parse(ctx.dataset.data);
     let labels = JSON.parse(ctx.dataset.labels.replace(/'/g, '"'));
@@ -30,18 +34,19 @@ function createChart(chartType = "pie") {
             },
         }
     };
-    var char = new Chart(ctx, config);
+    window.ProjectChart = new Chart(ctx, config);
 };
 
 function getRandomColor(amount) {
     let colors = [];
     for (let i = 0; i < amount; i++) {
-        let letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+        let color = '#'+Math.floor(Math.random()*16777215).toString(16);
+        if (colors.find(element => element === color) === undefined) {
+            colors.push(color);
         }
-        colors.push(color);
+        else {
+            i--;
+        }
     }
     return colors;
 }
