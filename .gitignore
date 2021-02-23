@@ -138,3 +138,4 @@ static/admin/
 #jquery
 *.min.js
 static/js/jquery.form.js
+.vscode/settings.json
