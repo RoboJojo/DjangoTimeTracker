@@ -15,12 +15,12 @@ window.onload = function () {
             tooltips: {
                 callbacks: {
                     label: function (tooltipItem, data) {
-                        var dataset = data.datasets[tooltipItem.datasetIndex];
-                        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
-                        var total = meta.total;
-                        var currentValue = dataset.data[tooltipItem.index];
-                        var percentage = parseFloat((currentValue / total * 100).toFixed(1));
-                        return (currentValue / 60 / 60).toPrecision(2) + 'hrs (' + percentage + '%)';
+                        let dataset = data.datasets[tooltipItem.datasetIndex];
+                        let meta = dataset._meta[Object.keys(dataset._meta)[0]];
+                        let total = meta.total;
+                        let currentValue = dataset.data[tooltipItem.index];
+                        let percentage = parseFloat((currentValue / total * 100).toFixed(1));
+                        return secondsToDH(currentValue) + ' (' + percentage + '%)';
                     },
                     title: function (tooltipItem, data) {
                         return data.labels[tooltipItem[0].index];
@@ -43,4 +43,15 @@ function getRandomColor(amount) {
         colors.push(color);
     }
     return colors;
+}
+
+function secondsToDH(seconds) {
+    seconds = Number(seconds);
+    let d = (seconds / (3600*24)).toFixed(1);
+    let h = (seconds % (3600*24) / 3600).toFixed(1);
+    if (d < 1) {
+        h = (seconds / 3600).toFixed(1);
+        return h + "hrs";
+    }
+    return d + "days " + h + "hrs";
 }
