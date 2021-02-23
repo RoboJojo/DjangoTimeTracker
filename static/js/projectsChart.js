@@ -54,10 +54,15 @@ function getRandomColor(amount) {
 function secondsToDH(seconds) {
     seconds = Number(seconds);
     let d = (seconds / (3600*24)).toFixed(1);
-    let h = (seconds % (3600*24) / 3600).toFixed(1);
+    let h = (
+            (seconds-d*(3600*24)) / 3600
+        ).toFixed(1);
     if (d < 1) {
         h = (seconds / 3600).toFixed(1);
         return h + "hrs";
     }
+    console.log(seconds);
+    console.log(d);
+    console.log(h);
     return d + "days " + h + "hrs";
 }
