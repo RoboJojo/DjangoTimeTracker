@@ -1,9 +1,10 @@
-window.onload = function () {
+window.onload = createChart();
+function createChart(chartType = "pie") {
     let ctx = document.querySelector('#chart');
     let data = JSON.parse(ctx.dataset.data);
     let labels = JSON.parse(ctx.dataset.labels.replace(/'/g, '"'));
     let config = {
-        type: 'pie',
+        type: chartType,
         data: {
             datasets: [{
                 data: data,
