@@ -8,10 +8,10 @@
             </div>
                 {% include "modal.html" %}
             <div class="card mt-2">
-                <div class="card-header">
+                <div class="card-header theme-changeable">
                     All Projects
                 </div>
-                <div class="card-body">
+                <div class="card-body theme-changeable">
                     {% for project in allProjects %}
                         <form id="{{project.name}}_{{project.ID}}" class="border border-top-0 border-bg-theme p-4" action="" onsubmit="return trackTime(this.id)">
                          {% csrf_token %}

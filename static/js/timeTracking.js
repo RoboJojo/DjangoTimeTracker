@@ -64,3 +64,27 @@ function msToTime(s) {
 
   return (hrs<10 ? "0"+hrs: hrs) + ':' + (mins<10 ? "0"+mins: mins) + ':' + (secs<10? "0"+secs:secs);
 }
+
+ // Wait for document to load
+ document.addEventListener("DOMContentLoaded", function(event) {
+    document.documentElement.setAttribute("data-theme", "light");
+
+    // Get our button switcher
+    var themeSwitcher = document.getElementById("theme-switcher");
+
+    // When our button gets clicked
+    themeSwitcher.onclick = function() {
+      // Get the current selected theme, on the first run
+      // it should be `light`
+      var currentTheme = document.documentElement.getAttribute("data-theme");
+
+      // Switch between `dark` and `light`
+      var switchToTheme = currentTheme === "dark" ? "light" : "dark"
+
+      // Set our currenet theme to the new one
+      document.documentElement.setAttribute("data-theme", switchToTheme);
+
+      //change button text
+      themeSwitcher.innerHTML = currentTheme === "dark" ? "Dark Mode" : "Light Mode";
+    }
+  });
