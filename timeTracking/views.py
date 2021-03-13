@@ -39,11 +39,6 @@ def stopTime(request):
             project.save()
             return JsonResponse({ "success":True })
     return JsonResponse({ "success":False })
-            
-def clearDurations(request):
-          timeSpent.objects.all().delete()
-          Project.objects.all().delete()
-          return JsonResponse({ "success":True })
         
 def registerProject(request):
     

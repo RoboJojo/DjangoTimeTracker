@@ -29,5 +29,4 @@ urlpatterns = [
     path('startTime/',      startTime,      name='startTime'),
     path('stopTime/',       stopTime,       name='stopTime'),
     path('durations/',      durations,      name='durations'),
-    path('clearDurations/', clearDurations, name='clearDurations'), #bad, will delete all your stuff!!!
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # static file servong during developement
