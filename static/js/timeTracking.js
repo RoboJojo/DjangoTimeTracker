@@ -67,10 +67,12 @@ function msToTime(s) {
 
  // Wait for document to load
  document.addEventListener("DOMContentLoaded", function(event) {
-    document.documentElement.setAttribute("data-theme", "light");
-
+    var savedTheme = localStorage.getItem('theme');
+    var initialTheme = savedTheme === null ? "light" : savedTheme;
+    document.documentElement.setAttribute("data-theme", initialTheme);
     // Get our button switcher
     var themeSwitcher = document.getElementById("theme-switcher");
+    themeSwitcher.innerHTML = initialTheme === "dark" ? "Light Mode" : "Dark Mode";
 
     // When our button gets clicked
     themeSwitcher.onclick = function() {
@@ -81,6 +83,7 @@ function msToTime(s) {
       // Switch between `dark` and `light`
       var switchToTheme = currentTheme === "dark" ? "light" : "dark"
 
+      localStorage.setItem('theme', switchToTheme);
       // Set our currenet theme to the new one
       document.documentElement.setAttribute("data-theme", switchToTheme);
 
