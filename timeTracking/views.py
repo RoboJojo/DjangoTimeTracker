@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
-from timeTracking.models import User, Project, timeSpent
+from timeTracking.models import Project, timeSpent
 import timeTracker.forms as forms
 from django.utils import timezone
 
@@ -27,8 +27,8 @@ def startTime(request):
 def stopTime(request):
     if request.method == "POST":
         if timeSpent.objects.filter().first():
-        #need to have a check if there are more than one entries without an end time. should only be one
-        #also need some way to make sure the POST request isn't coming from anywhere except the timeTracking page
+        # need to have a check if there are more than one entries without an end time. should only be one
+        # also need some way to make sure the POST request isn't coming from anywhere except the timeTracking page
             endTimeSpent = timeSpent.objects.order_by("startTime").last()
             now = timezone.now()            
             endTimeSpent.endTime = now
@@ -43,7 +43,6 @@ def stopTime(request):
 def clearDurations(request):
           timeSpent.objects.all().delete()
           Project.objects.all().delete()
-          User.objects.all().delete()
           return JsonResponse({ "success":True })
         
 def registerProject(request):
@@ -51,10 +50,7 @@ def registerProject(request):
     if request.method == "POST":
         form = forms.newProject(request.POST) 
         if form.is_valid(): 
-            newProject = form.save() 
-            for user in form.cleaned_data['people']:
-                user.projects.add(newProject)     
-            
+            newProject = form.save()             
             messages.success(request, 'New Project successfuly created')
     form = forms.newProject()
         
@@ -69,26 +65,6 @@ def projects(request):
     context = { 'allProjects' : allProjects, 'chartData' : chartData}
     
     return render(request , 'projects.html' , context)
-
-def registerUser(request):
-    
-    if request.method == "POST":
-        form = forms.newUser(request.POST) 
-        if form.is_valid(): 
-            newUser = form.save()
-            for project in form.cleaned_data["projects"]:
-                project.people.add(newUser)
-    else:
-         form = forms.newUser()
-    
-    return render(request, "addUser.html", { 'form' : form }) 
-
-def users(request):
-    allUsers = User.objects.all()
-        
-    context = {'allUsers' : allUsers}
-    
-    return render(request , 'users.html' , context)
 
 def durations(request):
     allDurations = timeSpent.objects.all()
