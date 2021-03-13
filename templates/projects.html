@@ -35,7 +35,6 @@
                                     <th scope="col"> Project Name </th>
                                     <th scope="col"> Time Spent </th>
                                     <th scope="col"> Start Date </th>
-                                    <th scope="col"> People </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,10 +45,6 @@
 
                                     <td> {{project.timeSpent }} </td>
                                     <td> {{project.start_date}} </td>
-                                    <td> {% for person in project.people.values %}
-                                        {{person.name}} <br>
-                                        {% endfor %}
-                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
