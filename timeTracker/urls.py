@@ -19,7 +19,7 @@ from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from timeTracker.views import index
-from timeTracking.views import timeTracking, registerProject, projects, startTime, stopTime, durations, clearDurations
+from timeTracking.views import timeTracking, registerProject, projects, startTime, stopTime, durations
 urlpatterns = [
     path('',                RedirectView.as_view(url='index/', permanent=True)),
     path('index/',          index,          name='index'),
