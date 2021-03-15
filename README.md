@@ -7,16 +7,18 @@ Steps to setup:
 git clone https://github.com/RoboJojo/DjangoTimeTracker.git
 ```
 2) Download desired boostrap distribution into static folder
-     * Something like this -> DjangoTimeTracker/static/boostrap-x.x.x-dist
+     * Something like this:
+        * _/DjangoTimeTracker/static/boostrap-x.x.x-dist_
 3) Update html includes to match boostrap version (the x.x.x value) 
-     * For instance, in DjangoTimeTracker/templates/head.html, the x.x.x values need to be updated to the correct version:
+     * For instance, in _/DjangoTimeTracker/templates/head.html_, the x.x.x values need to be updated to the correct version:
 ```html 
           <link rel="stylesheet" href="{% static 'bootstrap-x.x.x-dist/css/bootstrap.min.css' %}">
 ```
 4) Download desired jquery distribution into static/js folder:
-     Something like this -> DjangoTimeTracker/static/js/jquery-x.x.x.min.js
-5) Update html includes to match jquery distribution :
-    * For instance, in DjangoTimeTracker/templates/footer.html, the x.x.x values need to be updated to the correct version:
+     * Something like this: 
+        * _/DjangoTimeTracker/static/js/jquery-x.x.x.min.js_
+5) Update html includes to match jquery distribution:
+    * For instance, in _/DjangoTimeTracker/templates/footer.html_, the x.x.x values need to be updated to the correct version:
 ```html 
           <script src="{% static 'js/jquery-x.x.x.min.js' %}"></script>
 ```
@@ -24,7 +26,7 @@ git clone https://github.com/RoboJojo/DjangoTimeTracker.git
 ```
 pip install django-chartjs
 ```
-7) Navigate to DjangoTimeTracker folder where manage.py is located and make the database :
+7) Navigate to DjangoTimeTracker folder where manage.py is located and make the database:
 ```    
 python manage.py makemigrations
 python manage.py migrate
