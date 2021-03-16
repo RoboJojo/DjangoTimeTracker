@@ -31,3 +31,7 @@ pip install django-chartjs
 python manage.py makemigrations
 python manage.py migrate
 ```
+8) Start the website (hosting it locally with Django's built in server):
+```    
+python manage.py runserver
+```
