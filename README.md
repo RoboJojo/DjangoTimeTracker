@@ -22,8 +22,9 @@ git clone https://github.com/RoboJojo/DjangoTimeTracker.git
 ```html 
           <script src="{% static 'js/jquery-x.x.x.min.js' %}"></script>
 ```
-6) Install django-chartjs:
+6) Install django and django-chartjs:
 ```
+pip install django
 pip install django-chartjs
 ```
 7) Navigate to DjangoTimeTracker folder where manage.py is located and make the database:
