@@ -28,8 +28,8 @@ pip install django-chartjs
 ```
 7) Navigate to DjangoTimeTracker folder where manage.py is located and make the database:
 ```    
-python manage.py makemigrations
-python manage.py migrate
+python manage.py makemigrations timeTracking
+python manage.py migrate timeTracking
 ```
 8) Start the website (hosting it locally with Django's built in server):
 ```    
