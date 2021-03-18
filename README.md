@@ -36,3 +36,4 @@ python manage.py migrate timeTracking
 ```    
 python manage.py runserver
 ```
+_Note: If used in production, remove the secret key from the [settings.py](https://github.com/RoboJojo/DjangoTimeTracker/blob/master/timeTracker/settings.py) file, and do not use the development server started with the runserver command_
