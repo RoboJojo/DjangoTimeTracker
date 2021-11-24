@@ -24,6 +24,10 @@ function trackTime(project) {
              else alert("Error starting time, please see developer");
         }               
     });
+
+    window.onbeforeunload = function() {
+        stopTime();
+     };
     
     return false;
 }
