@@ -4,6 +4,11 @@ var timedProject = {
     "startTime" : 0 
 }
 
+window.onbeforeunload = function() {
+    if (timedProject.startTime != 0)
+        return 1;
+};
+
 function trackTime(project) {
     timerInterval = setInterval(stopWatch,1000);
     timedProject.startTime = new Date();
@@ -24,10 +29,6 @@ function trackTime(project) {
              else alert("Error starting time, please see developer");
         }               
     });
-
-    window.onbeforeunload = function() {
-        stopTime();
-     };
     
     return false;
 }
