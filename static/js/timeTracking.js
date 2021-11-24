@@ -51,7 +51,7 @@ function stopWatch() {
     currentTime = new Date();
     timeElapsedMs = currentTime - timedProject.startTime;
     timeElapsedStr = msToTime(timeElapsedMs);
-     $("#modal-body").html(timeElapsedStr);
+    $("#modal-body").html(timeElapsedStr);
 }
 
 function msToTime(s) {
