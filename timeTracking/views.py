@@ -4,6 +4,9 @@ from django.contrib import messages
 from timeTracking.models import Project, timeSpent
 import timeTracker.forms as forms
 from django.utils import timezone
+from django.utils.dateparse import parse_duration
+import json
+import datetime
 
 def timeTracking(request):
     
@@ -50,7 +53,24 @@ def registerProject(request):
     form = forms.newProject()
         
     return render(request, "addProject.html", { 'form' : form }) 
-       
+
+def editProject(request):
+    if request.method == "POST":
+        data = json.loads(request.POST['data'])
+        for proj in data:
+            project = Project.objects.get(ID = proj['id'])
+            try:
+                project.name = proj['name']
+                project.timeSpent = parse_duration(proj['timeSpent'])
+                project.start_date = timezone.make_aware(datetime.datetime.strptime(proj['start_date'], "%Y-%m-%dT%H:%M:%S"))
+                project.save()
+                return JsonResponse({ "success":True })
+            except Exception as e:
+                return JsonResponse({ "success":False })
+    allProjects = Project.objects.all()
+    context = {'allProjects' : allProjects}
+    return render(request, 'editProject.html', context)
+
 def projects(request):
     allProjects = Project.objects.all()
     chartData = {'labels': [], 'data': []}
@@ -59,7 +79,7 @@ def projects(request):
         chartData['data'].append(project.timeSpent.total_seconds())
     context = { 'allProjects' : allProjects, 'chartData' : chartData}
     
-    return render(request , 'projects.html' , context)
+    return render(request , 'projects.html', context)
 
 def durations(request):
     allDurations = timeSpent.objects.all()

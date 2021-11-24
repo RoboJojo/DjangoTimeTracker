@@ -25,7 +25,7 @@ SECRET_KEY = '3lc(z(bw0$3v*$6ipu&$xzv&j7b^dsmm&+6drnxh*t+2vg*3e2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition

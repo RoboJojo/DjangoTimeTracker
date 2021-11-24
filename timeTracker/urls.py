@@ -19,7 +19,7 @@ from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from timeTracker.views import index
-from timeTracking.views import timeTracking, registerProject, projects, startTime, stopTime, durations
+from timeTracking.views import timeTracking, registerProject, projects, startTime, stopTime, durations, editProject
 urlpatterns = [
     path('',                RedirectView.as_view(url='index/', permanent=True)),
     path('index/',          index,          name='index'),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('startTime/',      startTime,      name='startTime'),
     path('stopTime/',       stopTime,       name='stopTime'),
     path('durations/',      durations,      name='durations'),
+    path('editProject/',    editProject,    name='editProject'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # static file servong during developement
