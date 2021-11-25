@@ -43,11 +43,3 @@ $('#edit-project-form').submit((event) => {
         }               
     });
 });
-// function formatDurationNum(el) {
-//     let timeParts = el.value.split(':');
-//     timeParts.forEach( (element, index) => {
-//         if (element.length < 2 && element.search(/[1-9]/) < 0) 
-//             timeParts[index] = "0".repeat(2 - element.length) + element;
-//     });
-//     el.value = timeParts.join(':');
-// }

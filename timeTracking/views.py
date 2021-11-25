@@ -87,3 +87,13 @@ def durations(request):
     context = {'allDurations' : allDurations}
 
     return render(request , 'timeDurations.html' , context)
+
+def deleteProject(request):
+    if request.method == "POST":
+        if Project.objects.filter(ID = request.POST['projectID']).count():
+            project = Project.objects.get(ID = request.POST['projectID'])
+            project.delete()
+    
+    allProjects = Project.objects.all()
+    context = { 'allProjects' : allProjects }
+    return render(request, 'deleteProject.html', context)
