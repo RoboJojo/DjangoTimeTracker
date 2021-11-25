@@ -26,7 +26,7 @@ class timeSpent(models.Model):
 
     duration = models.DurationField("Timed duration", blank = True, null = True)
     
-    project = models.ForeignKey(Project, on_delete = models.PROTECT, unique = False)
+    project = models.ForeignKey(Project, on_delete = models.CASCADE, unique = False)
     
     class Meta:
         get_latest_by = ['startTime']

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+    <body>
+        <div class="container">
+            <div>
+                {% include "navbar.html" %}
+            </div>
+                {% include "modal.html" %}
+            <div class="card mt-2">
+                <div class="card-header theme-changeable">
+                    All Projects  <caption class="pr-4">({{allProjects.count}} Registered)</caption>
+                </div>
+                <div class="card-body theme-changeable">
+                    {% if allProjects %}
+                        {% for project in allProjects %}
+                            <form id="{{project.name}}_{{project.ID}}" class="border border-top-0 border-bg-theme p-4" method="post" onsubmit="return deleteProject('{{project.ID}}')">
+                            {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="project_{{project.ID}}" name="projectID" class="input-group-text form-control" type="text" value="{{project.ID}}" readonly>
+                                        </div>
+                                        <div class="col">
+                                            <input id="project_{{project.name}}" name="projectName" class="input-group-text form-control" type="text" value="{{project.name}}" readonly>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-block bg-danger" onclick="alert('Are you sure you want to delete {{project.name}}?')">
+                                                Delete Project
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                        {% endfor %}
+                    {% else %}
+                        <p>No project registered</p>
+                    {% endif %}
+                </div>
+            </div>                             
+        </div>
+{% include "footer.html" %}
+{% load static %}
+    <script type="text/javascript" src="{% static 'js/deleteProject.js' %}"></script>
+    </body>
+</html>
