@@ -8,22 +8,45 @@
             </div>
             <div class="card mt-2 theme-changeable">
                 <div class="card-body">
-                   <div class="row">
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
+                            Welcome to the Time Tracker. This tool is meant to quantify the time you spend on your projects
+                            <br>
+                            To get started with the Time Tracker <a href="/registerProject">register a project</a> then <a href="/timeTracking">track your time</a>!
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center"> Some useful links:</p>
+                    </div>
+                    <div class="row pt-3 d-flex justify-content-center align-items-center">
                         <div class="col">
                             <a type="button" class="btn btn-block bg-theme" href="/timeTracking">
                                 Track Time
                             </a>
                         </div>
-                        <div class="col">
-                            <a type="button" class="btn btn-block bg-theme" href="/registerProject">
-                                Add Project
-                            </a>
-                        </div>
+                        <div class="col-sm-4">
+                            <div class="col">
+                                <a type="button" class="btn btn-block bg-theme" href="/registerProject">
+                                    Add Project
+                                </a>
+                            </div>                        
+                            <div class="col pt-2">
+                                <a type="button" class="btn btn-block bg-theme" href="/deleteProject">
+                                    Delete Project
+                                </a>
+                            </div>   
+                            <div class="col pt-2">
+                                <a type="button" class="btn btn-block bg-theme" href="/editProject">
+                                    Edit Project
+                                </a>
+                            </div>
+                        </div> 
                         <div class="col">
                             <a type="button" class="btn btn-block bg-theme" href="/projects">
                                 Project List
                             </a>
-                        </div>
+                        </div>                                          
                     </div>
                 </div>                
             </div>
